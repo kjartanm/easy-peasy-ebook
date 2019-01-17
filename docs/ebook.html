@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+<link rel="preload" href="https://get.mavo.io/mavo.css" as="style">
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Architects+Daughter" as="style">
+<link rel="preload" href="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js" as="script">
+<link rel="preload" href="https://get.mavo.io/mavo.js" as="script">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://get.mavo.io/mavo.css" />
+<link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+<script src="https://get.mavo.io/mavo.js"></script>
+<title>Prototype Activity Mapping</title>
+<style>
+    :root {
+        font-family: 'Architects Daughter', cursive;
+        font-size: 18px;
+        --gap: 18px;
+        --halfGap: calc(var(--gap) / 2);
+        --doubleGap: calc(var(--gap) * 2);
+        --mainOffset: 5em;
+        --cardHeight: 180px;
+        --halfCardHeight: calc(var(--cardHeight) / 2);
+        --cardWidth: 280px;
+    }
+
+    html {
+        box-sizing: border-box;
+    }
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
+
+    body,
+    main {
+        margin: 0;
+        padding: 0;
+        position: absolute;
+    }
+
+    body {
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+    }
+
+    header {
+        height: var(--mainOffset);
+        padding: var(--gap);
+        padding-bottom: 0;
+        z-index: 0;
+    }
+
+    main {
+        overflow: scroll;
+        height: calc(100% - var(--mainOffset) - var(--doubleGap));
+        width: 100%;
+        margin-top: 0;
+        z-index: 1;
+        padding: var(--gap);
+    }
+
+    .toolbar-radio {
+        height: 2em;
+        margin-left: var(--gap);
+    }
+
+    .toolbar-radio wired-radio {
+        margin: 0;
+    }
+
+    .mv-bar {
+        display: block;
+        padding: var(--gap);
+    }
+
+    [mv-mode='edit'] .mv-edit {
+        background-color: rgba(131, 151, 151, 0.58)
+    }
+
+    .mv-bar .toolbar-btn {
+        margin-left: var(--halfGap);
+        float: right;
+        min-width: 55px;
+    }
+
+    .card {
+        display: block;
+        min-width: var(--cardWidth);
+        height: var(--cardHeight);
+        padding: var(--halfGap);
+    }
+
+    .card-index {
+        text-align: right;
+    }
+
+    .card-role {
+        display: block;
+        float: left;
+        background-color: #444;
+        color: whitesmoke;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .card-label {
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    [mv-mode='edit'] .card-property-editor {
+        background-color: aliceblue;
+    }
+
+    [mv-app][mv-mode="edit"] .mv-empty,
+    [mv-app] [mv-mode="edit"] .mv-empty {
+        opacity: 1;
+    }
+
+    [mv-mode='edit'] .card-property-editor--enum:after {
+        content: '▼';
+        font-weight: bold;
+        transform: scale(2, 0.5);
+        break-before: never;
+    }
+
+    .card-show-all {
+        display: block;
+        float: right;
+        margin: 0;
+        padding: 0;
+        width: 85px;
+    }
+
+    /*[mv-mode='edit'] .card-enable-edit {
+        display: block;
+    }*/
+
+    .chapters {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, var(--cardWidth));
+        grid-template-rows: min-content;
+        grid-gap: var(--gap);
+        justify-content: start;
+        background-color: #fff;
+        color: #444;
+        width: 100vw;
+        padding: var(--gap);
+        margin: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        grid-auto-flow: row dense;
+
+    }
+
+    .metadata {
+        display: block;
+        grid-column: 1/-1;
+        background-color: rgba(252, 170, 18, 0.575);
+        height: auto;/*calc(0.5 * var(--cardHeight));*/
+        padding: var(--gap);
+        margin: 0;
+    }
+
+    .metadata--expanded {
+        xxxheight: calc(2 * var(--cardHeight));
+    }
+
+    .metadata-items {
+        display: grid;
+        grid-gap: var(--gap);
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+    }
+
+    .metadata-show-all {
+        position: absolute;
+        right: 10px;
+        top: -5px;
+        z-index: 10;
+    }
+
+    .metadata-item--secondary {
+        display: none;
+    }
+
+    .metadata-item-cover {
+        max-width: 160px;
+        max-height: 160px;
+    }
+
+    .metadata--expanded .metadata-item--secondary {
+        display: block;
+    }
+
+    .metadata-items h4 {
+        margin: 0;
+        margin-top: 4px;
+    }
+
+    .chapter {
+        padding: 0;
+        margin: 0;
+    }
+
+    .card--main {
+        display: none;
+
+    }
+
+    .chapter--expanded {
+        display: contents;
+    }
+
+    .chapter--expanded .card--main {
+        display: block;
+        grid-column: 1/-1;
+        background-color: rgba(63, 127, 191, 0.2);
+        height: calc(2 * var(--cardHeight));
+        position: relative;
+        padding: 0;
+    }
+
+    .chapter-details {
+        display: flex;
+        width: 100%;
+        border: 0px solid yellow;
+        height: calc(2 * var(--cardHeight));
+    }
+
+    .chapter-summary {
+        width: calc(var(--cardWidth) - var(--halfGap));
+        border: 0px solid red;
+        padding: var(--halfGap);
+    }
+
+    .chapter-editor {
+        flex: 1;
+        border: 0px solid blue;
+        padding: var(--halfGap);
+        position: relative;
+    }
+
+    .chapter-editor wired-card {
+        height: calc(100% - var(--halfGap));
+        width: calc(100% - var(--halfGap));
+        display: block;
+        position: relative;
+        background-color: rgb(250, 249, 249);
+    }
+
+    .chapter-editor-canvas {
+        padding: var(--halfGap);
+        height: calc(100% - var(--gap));
+        display: block;
+        position: absolute;
+        overflow-y: scroll;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .chapter--expanded .card--summary {
+        background-color: rgba(63, 127, 191, 0.2);
+    }
+
+    .card--chapter {
+        background-color: rgba(47, 167, 43, 0.479);
+    }
+
+    .mv-add {
+        max-width: 150px;
+        min-width: 120px;
+        max-height: 50px;
+        min-height: 40px;
+        background: #fff;
+        font-family: 'Architects Daughter', cursive;
+        font-size: 18px;
+        border: 1.5px solid #020202a2;
+    }
+
+    wired-radio {
+        font-weight: bold;
+        margin-top: var(--halfGap);
+        transform: scale(0.8, 0.8);
+    }
+
+    .header-title {
+        font-size: 1.7em;
+        font-weight: bold;
+        line-height: 1em;
+    }
+
+    .mv-item-bar.mv-ui {
+        bottom: calc(100% - 14px);
+    }
+
+    .mv-status {
+        display: none;
+    }
+</style>
+<script>
+    var currentSelectedChapterIndex = -1;
+    function onClickExpandChapter(selectedChapterIndex, selected, radio) {
+        const currentCardExpanded = document.querySelector('.chapter-' + currentSelectedChapterIndex);
+        const cardToExpand = document.querySelector('.chapter-' + selectedChapterIndex);
+        cardToExpand.classList.toggle('chapter--expanded', selected)
+        if (currentCardExpanded && currentSelectedChapterIndex != selectedChapterIndex) {
+            currentCardExpanded.classList.toggle('chapter--expanded', false)
+        }
+        currentSelectedChapterIndex = selectedChapterIndex;
+    }
+    function onClickExpandMetadata(selected, radio) {
+        const metadataSection = document.querySelector('.metadata');
+        metadataSection.classList.toggle('metadata--expanded', selected)
+    }
+</script>
+</head>
+
+<body mv-app="EbookCreator" mv-plugins="markdown" mv-xx2-storage="local" mv-xx1-storage="#initSource" mv-storage="https://github.com/kjartanm/easy-peasy-ebook/blob/master/data/bookdata.json">
+    <header>
+        <wired-card class="mv-bar">
+            <span class="header-title">Prototype: Easy Peasy EBook</span>
+            <wired-button class="toolbar-btn mv-login">login</wired-button>
+            <wired-button class="toolbar-btn mv-logout">logout</wired-button>
+
+            <wired-button class="toolbar-btn mv-edit">edit</wired-button>
+            <wired-button class="toolbar-btn mv-save">save</wired-button>
+            <wired-button class="toolbar-btn mv-export">export</wired-button>
+        </wired-card>
+    </header>
+    <main>
+        <div class="chapters">
+            <wired-card class="metadata" onclick="this.updated()" >
+                <wired-radio onclick="onClickExpandMetadata(this.getAttribute('aria-checked') == '1', this)"
+                name="metadata-edit" text="show all metadata" class="metadata-show-all"></wired-radio>
+                <div class="metadata-items">
+                    <div class="metadata-item">
+                        <h4>Title</h4>
+                        <div property="title" class="card-property-editor metadata-label metadata-property"></div>
+                    </div>
+                    
+                    <div class="metadata-item">
+                        <h4>Author</h4>
+                        <div property="author" class="card-property-editor metadata-label metadata-property"></div>
+                    </div>
+
+                    <div class="metadata-item metadata-item--secondary ">
+                        <h4>Cover</h4>
+                        <img class="metadata-item-cover" property="cover">
+                    </div>
+                    
+                    <div class="metadata-item metadata-item--secondary ">
+                        <h4>Publisher</h4>
+                        <div property="publisher" class="card-property-editor metadata-label metadata-property"></div>
+                        <h4>Year</h4>
+                        <div property="year" class="card-property-editor metadata-label metadata-property"></div>
+                        <h4>ISBN</h4>
+                        <div property="bookId" class="card-property-editor metadata-label metadata-property"></div>
+                    </div>
+
+                    
+
+                </div>
+            </wired-card>
+            <div class="chapter chapter-[$index + 1]" property mv-multiple>
+                <wired-card onclick="this.updated()" class="card card--chapter card--summary">
+                    <wired-radio data-chapter-index="[$index + 1]" onclick="onClickExpandChapter(this.getAttribute('data-chapter-index'), this.getAttribute('aria-checked') == '1', this)"
+                        name="card-edit" text="show all" class="card-show-all"></wired-radio>
+                    <div>Chapter [$index + 1]</div>
+                    <div class="card-label">[title]</div>
+                    <div class="card-description">[description]</div>
+                </wired-card>
+                <wired-card onclick="this.updated()" class="card card--chapter card--main">
+                    <div class="chapter-details">
+                        <div class="chapter-summary">
+                            <div>Show/edit Chapter [$index + 1]</div>
+                            <h3>Title</h3>
+                            <div property="title" class="card-property-editor card-label"></div>
+                            <h3>Description</h3>
+                            <div property="description" class="card-description"></div>
+                        </div>
+                        <div class="chapter-editor">
+                            <wired-card class="chapter-editor-border" onclick="this.updated()">
+                                <div property="content" class="chapter-editor-canvas markdown">
+
+                                </div>
+                            </wired-card>
+                        </div>
+                    </div>
+                </wired-card>
+            </div>
+        </div>
+    </main>
+    <script src="https://unpkg.com/wired-elements@latest/dist/wired-elements.bundled.min.js"></script>
+</body>
+
+</html>
