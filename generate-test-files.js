@@ -5,11 +5,8 @@ const slugify = require('slugify');
 const featureDirPath = process.argv.pop();
 const acitityFilePath = process.argv.pop();
 
-<<<<<<< HEAD
-=======
 console.log("args", acitityFilePath, featureDirPath);
 
->>>>>>> 5b54042266e107cad1a14af0e7d63552a1daf064
 const activityData = JSON.parse(fs.readFileSync(acitityFilePath, { encoding: 'utf8' }));
 
 activityData.activity.map((activity, activityIdx) => {
