@@ -11,6 +11,18 @@
 <link rel="stylesheet" href="https://get.mavo.io/mavo.css" />
 <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
 <script src="https://get.mavo.io/mavo.js"></script>
+<script>
+Mavo.hooks.add({
+    "node-getdata-end": function(env) {
+        if(env.context.property == "cover" && env.data){
+            if(env.data.indexOf("/docs" !== -1)){
+                env.data = env.data.replace("/docs", "");
+                this.element.src = env.data;
+            }
+        }
+    }
+});
+</script>
 <title>Prototype Activity Mapping</title>
 <style>
     :root {
