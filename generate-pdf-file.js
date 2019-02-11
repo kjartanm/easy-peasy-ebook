@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
-
+const convertHTMLToPDF = require("pdf-puppeteer");
 const md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -35,7 +35,7 @@ ${md.render(chapter.content)}
 `;
 }
 
-const targetPath = path.join(outDirPath, "OEBPS", slugify(bookData.title.toLowerCase()) + '.xhtml');
+const targetPath = path.join(outDirPath, slugify(bookData.title.toLowerCase()) + '.pdf');
 const content = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -46,6 +46,7 @@ const content = `<?xml version="1.0" encoding="UTF-8"?>
     ${bookData.chapter.reduce((acc,chapter, idx)=> acc + createChapter(chapter, idx), ``)}
 </body>
 </html>`;
-fs.writeFile(targetPath, content, 'utf-8', (err, data) => console.log(err ? err : "success: " + targetPath));
 
-
+convertHTMLToPDF(content, pdf=>{
+    fs.writeFile(targetPath, pdf, 'binary', (err, data) => console.log(err ? err : "success: " + targetPath));
+})
