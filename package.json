@@ -18,15 +18,18 @@
   "config": {
     "bookdata": "./docs/bookdata.json",
     "epubfiles": "./epub-originals/.",
-    "builddir": "./epubdata"
+    "builddir": "./epubdata",
+    "images": "./docs/images",
+    "contentdir": "./epubdata/OEBPS"
   },
   "scripts": {
-    "pdf": "cross-var node generate-pdf-file  $npm_package_config_bookdata $npm_package_config_builddir",
-    "build": "yarn setup && yarn content && yarn package && yarn pdf && yarn test",
+    "pdf": "cross-var node generate-pdf-file $npm_package_config_bookdata $npm_package_config_builddir",
+    "build": "yarn setup && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
+    "cover": "cross-var node generate-cover-file $npm_package_config_bookdata $npm_package_config_builddir",
     "test": "cross-var node epubcheck",
     "package": "cross-var node generate-package $npm_package_config_builddir",
     "presetup": "cross-var rimraf $npm_package_config_builddir && mkdir $npm_package_config_builddir",
-    "setup": "cross-var cp -r $npm_package_config_epubfiles $npm_package_config_builddir",
+    "setup": "cross-var cp -r $npm_package_config_epubfiles $npm_package_config_builddir &&  cp -r $npm_package_config_images $npm_package_config_contentdir",
     "postsetup": "cross-var node generate-opf-file $npm_package_config_bookdata $npm_package_config_builddir",
     "precontent": "cross-var node generate-toc-file $npm_package_config_bookdata $npm_package_config_builddir",
     "content": "cross-var node generate-content-files $npm_package_config_bookdata $npm_package_config_builddir",

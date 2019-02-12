@@ -39,11 +39,14 @@ const content = `<?xml version="1.0" encoding="UTF-8"?>
     ${createMetadata(bookData)}
     </metadata>
     <manifest>
+        <item id="cover-image" href="${bookData.cover.replace('https://kjartanm.github.io/easy-peasy-ebook/', '')}" media-type="image/jpeg" properties="cover-image" />
+        <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml" />
         <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav" />
         <item id="ncx" href="nav.ncx" media-type="application/x-dtbncx+xml" />
         <item id="${slugify(bookData.title.toLowerCase())}" href="${slugify(bookData.title.toLowerCase())}.xhtml" media-type="application/xhtml+xml" />
     </manifest>
     <spine toc="ncx">
+        <itemref idref="cover" />
         <itemref idref="${slugify(bookData.title.toLowerCase())}" />
     </spine>
 </package>`;

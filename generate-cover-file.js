@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const slugify = require('slugify');
+
 const md = require('markdown-it')({
     html: true,
     linkify: true,
@@ -23,34 +24,35 @@ const createMetadata = (bookData) => {
     <meta name="DC.publisher" content="${bookData.publisher}" />
     <meta name="DC.identifier" content="${bookData.bookId}" />
     <meta name="DC.date" content="${bookData.year}" />
+    <style>
+        body {
+            background-color: #FFFFFF;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-top: 0px;
+            text-align: center;
+        }
+      
+        img {
+            max-height: 100%;
+            max-width: 100%;
+        }    
+    </style>
 `;
 }
 
-const createChapter = (chapter, chapterIdx) => {
-    return `
-    <li>
-        <a href="${slugify(bookData.title.toLowerCase())}.xhtml#chapter-${chapterIdx + 1}">${chapter.title}</a>
-    </li>
-    `;
-}
-
-const targetPath = path.join(outDirPath, 'OEBPS/nav.xhtml');
+const targetPath = path.join(outDirPath, "OEBPS", 'cover.xhtml');
 const content = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     ${createMetadata(bookData)}
 </head>
 <body>
-<nav epub:type="toc">
-<h1>Innhold</h1>
-<ol>
-    <li>
-        <a href="cover.xhtml">Omslag</a>
-    </li>
-    ${bookData.chapter.reduce((acc,chapter, idx)=> acc + createChapter(chapter, idx), ``)}
-</ol>
-</nav>
+    <img src="${bookData.cover.replace('https://kjartanm.github.io/easy-peasy-ebook/', '')}" alt="Cover Image" />
 </body>
 </html>`;
 fs.writeFile(targetPath, content, 'utf-8', (err, data) => console.log(err ? err : "success: " + targetPath));
+
+
