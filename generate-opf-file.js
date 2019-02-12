@@ -32,7 +32,7 @@ ${md.render(chapter.content)}
 `;
 }
 
-const targetPath = path.join(outDirPath, 'OEBPS/package.opf');
+const targetPath = path.join(outDirPath, 'package.opf');
 const content = `<?xml version="1.0" encoding="UTF-8"?>
 <package version="3.0" unique-identifier="${bookData.bookId}" xmlns="http://www.idpf.org/2007/opf">
     <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">

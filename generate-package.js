@@ -1,20 +1,11 @@
 const archiver = require('archiver');
 const fs = require('fs');
 const path = require('path');
-const inputDir = process.argv.pop();
-/*
-zip({
-    cwd: inputDir,
-    source: "*",
-    destination: '../docs/ebook.epub'
-  }).then(function() {
-    console.log('all done!');
-  }).catch(function(err) {
-    console.error(err.stack);
-    process.exit(1);
-  });*/
 
-const output = fs.createWriteStream("./docs/ebook.epub");
+const outputDir = process.argv.pop();
+const inputDir = process.argv.pop();
+
+const output = fs.createWriteStream(path.join(outputDir, 'ebook.epub'));
 const archive = archiver('zip', {
   zlib: { level: 9 } // Sets the compression level.
 });

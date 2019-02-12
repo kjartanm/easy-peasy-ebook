@@ -42,7 +42,7 @@ const createMetadata = (bookData) => {
 `;
 }
 
-const targetPath = path.join(outDirPath, "OEBPS", 'cover.xhtml');
+const targetPath = path.join(outDirPath, 'cover.xhtml');
 const content = `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
