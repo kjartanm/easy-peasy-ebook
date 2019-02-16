@@ -32,4 +32,6 @@ To make it available for others, set up your repository to use GitHub pages with
 
 When editing, every save will create a new commit. To build a new version of the epub you have to fetch the last data from GitHub and then use ``` yarn build ``` to start the process.
 
+If you want to automate the process, hook your repository up to Netlify (https://www.netlify.com/) if CI tools are too much.
+
 The build process creates an epub and a pdf that is available from docs. An epubcheck report is saved to reports directory.
