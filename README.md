@@ -12,7 +12,7 @@ Using GitHub as a content platform is great for OER and Open Access purposes. Yo
 
 Also I wanted to experiment with how to use CSS grid to implement the pattern where you have a grid width cards/tiles that expands underneath when activated. 
 
-The prototype has been implemented technically using @Mavo (https://mavo.io) and CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), and the prototype aesthetics are a result of wiredjs (https://wiredjs.com/) and Architects Daughter (https://fonts.google.com/specimen/Architects+Daughter). Puppeteer (https://pptr.dev/) is used for generating a pdf and epubcheck (https://www.npmjs.com/package/epubcheck) is used for testing.
+The prototype has been implemented technically using @Mavo (https://mavo.io) and CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), and the prototype aesthetics are a result of wiredjs (https://wiredjs.com/) and Architects Daughter (https://fonts.google.com/specimen/Architects+Daughter). Puppeteer (https://pptr.dev/) is used for generating a pdf and epubcheck (https://www.npmjs.com/package/epubcheck) is used for testing. Epub basics can be found at https://github.com/bmaupin/epub-samples.
 
 At the moment there is no styling of the resulting epub or pdf. For epub Blitz (https://friendsofepub.github.io/Blitz/) could be something. And for pdf, maybe paged.js could be of help? (https://www.pagedmedia.org/)
 
