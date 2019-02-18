@@ -6,7 +6,7 @@ Easy Peasy EBook is a prototype of a minimal epub creation tool based on GitHub,
 
 Mavo is a great tool for creating editable frontends for websites using different storage backends. One such storage option is Github, so if you reverse the usual usecase that means you can use Mavo to create different frontend editors for data files you need in your repository for building purposes. 
 
-Another prototype () explored this for testing purposes, but this time I wanted to experiment with a usecase where a part of content production processes is more like software build processes where you kind of compile the content, like with epub. I have a background in publishing industry, so it was a natural usecase.
+Another prototype i made (https://medium.com/@kjartanmuller/prototype-story-mapping-as-activity-mapping-f50bbf9bd2c3) explored this for testing purposes, but this time I wanted to experiment with a usecase where a part of a content production process is more like software build processes where you kind of compile the content, like with epub. I have a background in publishing industry, so it was a natural usecase.
 
 Using GitHub as a content platform is great for OER and Open Access purposes. You have available mechanisms for versioning and collaboration, and a way to mix a stringent editorial processes with input from everyone.
 
@@ -19,13 +19,16 @@ At the moment there is no styling of the resulting epub or pdf. For epub Blitz (
 
 The tool is demoed on https://kjartanm.github.io/easy-peasy-ebook/
 
+- It most likely does not work on IE 11, and is not designed for small screens.
+- You can use Export to look at the structure.
+
 ## Install
 
 ``` yarn ```
 
 ## Usage
 
-Change the mv-storage attribute in the body element in docs/index.html to point to your own repository.
+Change the ```mv-storage``` attribute in the body element in ```docs/index.html``` to point to your own repository.
 
 For local testing, cd to docs and use http-server.
 

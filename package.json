@@ -40,7 +40,7 @@
     "pdf": "cross-var node generate-pdf-file $npm_package_config_bookdata $npm_package_config_publishdir",
     "package": "cross-var node generate-package $npm_package_config_builddir $npm_package_config_publishdir",
 
-    "test": "cross-var node epubcheck"
+    "test": "cross-var node epubcheck $npm_package_config_publishdir"
   },
   "repository": {
     "type": "git",
