@@ -15,12 +15,12 @@ Also I wanted to experiment with how to use CSS grid to implement the pattern wh
 The prototype has been implemented technically using @Mavo (https://mavo.io) and CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), and the prototype aesthetics are a result of wiredjs (https://wiredjs.com/) and Architects Daughter (https://fonts.google.com/specimen/Architects+Daughter). The editor uses Markdown (https://en.wikipedia.org/wiki/Markdown).
 Puppeteer (https://pptr.dev/) is used for generating a pdf and epubcheck (https://www.npmjs.com/package/epubcheck) is used for testing. Epub basics can be found at https://github.com/bmaupin/epub-samples.
 
-At the moment there is no styling of the resulting epub or pdf. For epub Blitz (https://friendsofepub.github.io/Blitz/) could be something. And for pdf, maybe paged.js could be of help? (https://www.pagedmedia.org/)
-
 The tool is demoed on https://kjartanm.github.io/easy-peasy-ebook/
 
+Caveats:
 - It most likely does not work on IE 11, and is not designed for small screens.
-- You can use Export to look at the structure.
+- Since this is a prototype, I haven't really tried to optimize code.
+- At the moment there is no styling of the resulting epub or pdf. For epub Blitz (https://friendsofepub.github.io/Blitz/) could be something. And for pdf, maybe paged.js could be of help? (https://www.pagedmedia.org/)
 
 ## Install
 
@@ -35,6 +35,8 @@ For local testing, cd to docs and use http-server.
 To make it available for others, set up your repository to use GitHub pages with docs as directory.
 
 When editing, every save will create a new commit. To build a new version of the epub you have to fetch the last data from GitHub and then use ``` yarn build ``` to start the process.
+
+You can use Export to look at the structure while editing.
 
 If you want to automate the process, hook your repository up to Netlify (https://www.netlify.com/) if CI tools are too much.
 
