@@ -20,7 +20,7 @@ The editing tool is demoed on https://kjartanm.github.io/easy-peasy-ebook/
 Caveats:
 - It most likely does not work on IE 11, and is not designed for small screens.
 - Since this is a prototype, I haven't really tried to optimize code.
-- At the moment there is no styling of the resulting epub or pdf. For epub Blitz (https://friendsofepub.github.io/Blitz/) could be something. And for pdf, maybe paged.js could be of help? (https://www.pagedmedia.org/)
+- At the moment there is no styling of the resulting epub or pdf. For epub Blitz, (https://friendsofepub.github.io/Blitz/) could be something. And for pdf, maybe paged.js could be of help? (https://www.pagedmedia.org/)
 
 ## Install
 
