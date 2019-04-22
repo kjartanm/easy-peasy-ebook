@@ -38,6 +38,4 @@ When editing, every save will create a new commit. To build a new version of the
 
 You can use Export to look at the structure while editing.
 
-If you want to automate the process, hook your repository up to Netlify (https://www.netlify.com/) if CI tools are too much.
-
 The build process creates an epub and a pdf that is available from docs. An epubcheck report is saved to reports directory.
