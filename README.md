@@ -13,7 +13,7 @@ Using GitHub and Mavo as a content platform is great for OER and Open Access pur
 Also I wanted to experiment with how to use CSS grid to implement the common ui pattern where you have a grid width cards that expands underneath when activated. 
 
 The prototype has been implemented technically using @Mavo (https://mavo.io) and CSS Grid Layout (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout), and the prototype aesthetics are a result of wiredjs (https://wiredjs.com/) and Architects Daughter (https://fonts.google.com/specimen/Architects+Daughter). The editor uses Markdown (https://en.wikipedia.org/wiki/Markdown).
-Puppeteer (https://pptr.dev/) is used for generating a pdf and epubcheck (https://www.npmjs.com/package/epubcheck) is used for testing. Epub basics can be found at https://github.com/bmaupin/epub-samples.
+Puppeteer (https://pptr.dev/) is used for generating a pdf, and epubcheck (https://www.npmjs.com/package/epubcheck) is used for testing. Epub basics can be found at https://github.com/bmaupin/epub-samples.
 
 The editing tool is demoed on https://kjartanm.github.io/easy-peasy-ebook/
 
@@ -21,7 +21,7 @@ Caveats:
 - It most likely does not work on IE 11, and is not designed for small screens.
 - Since this is a prototype, I haven't really tried to optimize code.
 - At the moment there is no styling of the resulting epub or pdf. For epub Blitz, (https://friendsofepub.github.io/Blitz/) could be something. 
-- The usecase for the pdf is proofreading, and not print. For creating a print version, maybe paged.js could be of help? (https://www.pagedmedia.org/)
+- The usecase for the pdf is proof reading, and not print. For creating a print version, maybe paged.js could be of help? (https://www.pagedmedia.org/)
 
 ## Install
 
