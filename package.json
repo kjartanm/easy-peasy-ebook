@@ -24,7 +24,7 @@
     "publishdir": "./dist"
   },
   "scripts": {
-    "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn test",
+    "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package",
     
     "build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
 
