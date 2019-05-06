@@ -26,7 +26,7 @@
   "scripts": {
     "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
 
-    "presetupdirs": "cross-var rimraf $npm_package_config_builddir && mkdir $npm_package_config_builddir",
+    "presetupdirs": "cross-var rimraf $npm_package_config_builddir && mkdir $npm_package_config_builddir && rimraf $npm_package_config_publishdir && mkdir $npm_package_config_publishdir",
     "setupdirs": "cross-var cp -r $npm_package_config_epubfiles $npm_package_config_builddir &&  cp -r $npm_package_config_images $npm_package_config_contentdir",
 
     "opf": "cross-var node generate-opf-file $npm_package_config_bookdata $npm_package_config_contentdir",

@@ -5,19 +5,5 @@
             "src": "package.json",
             "use": "@now/static-build"
         }
-    ],
-    "routes": [
-        {
-            "src": "/",
-            "dest": "./ebook.epub"
-        },
-        {
-            "src": "/pdf",
-            "dest": "./*.pdf"
-        },
-        {
-            "src": "/report",
-            "dest": "./epubcheck.json"
-        }
     ]
 }
