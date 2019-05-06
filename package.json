@@ -6,15 +6,7 @@
   "directories": {
     "doc": "docs"
   },
-  "devDependencies": {
-    "archiver": "^3.0.0",
-    "cross-var": "^1.1.0",
-    "epubchecker": "^1.1.2",
-    "markdown-it": "^8.4.2",
-    "pdf-puppeteer": "^1.1.4",
-    "rimraf": "^2.6.2",
-    "slugify": "^1.3.1"
-  },
+  "dependencies": {},
   "config": {
     "bookdata": "./docs/bookdata.json",
     "epubfiles": "./epub-originals/.",
@@ -24,24 +16,18 @@
     "publishdir": "./dist"
   },
   "scripts": {
-    "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package",
-    
+    "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn test",
     "build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
-
     "presetupdirs": "cross-var rimraf $npm_package_config_builddir && mkdir $npm_package_config_builddir && rimraf $npm_package_config_publishdir && mkdir $npm_package_config_publishdir",
     "setupdirs": "cross-var cp -r $npm_package_config_epubfiles $npm_package_config_builddir &&  cp -r $npm_package_config_images $npm_package_config_contentdir",
-
     "opf": "cross-var node generate-opf-file $npm_package_config_bookdata $npm_package_config_contentdir",
     "cover": "cross-var node generate-cover-file $npm_package_config_bookdata $npm_package_config_contentdir",
-
     "content": "yarn maintext && yarn toc && yarn ncx",
     "maintext": "cross-var node generate-content-file $npm_package_config_bookdata $npm_package_config_contentdir",
     "toc": "cross-var node generate-toc-file $npm_package_config_bookdata $npm_package_config_contentdir",
     "ncx": "cross-var node generate-ncx-file $npm_package_config_bookdata $npm_package_config_contentdir",
-
     "pdf": "cross-var node generate-pdf-file $npm_package_config_bookdata $npm_package_config_publishdir",
     "package": "cross-var node generate-package $npm_package_config_builddir $npm_package_config_publishdir",
-
     "test": "cross-var node epubcheck $npm_package_config_publishdir"
   },
   "repository": {
@@ -54,5 +40,13 @@
     "url": "https://github.com/kjartanm/easy-peasy-ebook/issues"
   },
   "homepage": "https://github.com/kjartanm/easy-peasy-ebook#readme",
-  "dependencies": {}
+  "devDependencies": {
+    "archiver": "^3.0.0",
+    "cross-var": "^1.1.0",
+    "epubchecker": "^1.2.0",
+    "markdown-it": "^8.4.2",
+    "pdf-puppeteer": "^1.1.4",
+    "rimraf": "^2.6.2",
+    "slugify": "^1.3.1"
+  }
 }
