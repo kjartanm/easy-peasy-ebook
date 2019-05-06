@@ -2,8 +2,22 @@
     "version": 2,
     "builds": [
         {
-            "src": "./docs/*",
+            "src": "./docs/dist/*",
             "use": "@now/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/",
+            "dest": "./ebook.epub"
+        },
+        {
+            "src": "/pdf",
+            "dest": "./*.pdf"
+        },
+        {
+            "src": "/report",
+            "dest": "./epubcheck.json"
         }
     ]
 }

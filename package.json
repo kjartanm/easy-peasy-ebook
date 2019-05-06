@@ -21,10 +21,10 @@
     "builddir": "./epubdata",
     "images": "./docs/images",
     "contentdir": "./epubdata/OEBPS",
-    "publishdir": "./docs/dist"
+    "publishdir": "./dist"
   },
   "scripts": {
-    "build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
+    "now-build": "yarn setupdirs && yarn opf && yarn cover && yarn content && yarn package && yarn pdf && yarn test",
 
     "presetupdirs": "cross-var rimraf $npm_package_config_builddir && mkdir $npm_package_config_builddir",
     "setupdirs": "cross-var cp -r $npm_package_config_epubfiles $npm_package_config_builddir &&  cp -r $npm_package_config_images $npm_package_config_contentdir",
