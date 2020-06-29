@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video JS || PoC</title>
+    <link href="https://vjs.zencdn.net/7.6.6/video-js.css" rel="stylesheet" />
+    <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+    <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</head>
+<body>
+<video id="my-player"
+       class="video-js vjs-controls-enabled vjs-workinghover vjs-v7 vjs-layout-medium bc-player-BJAZNkRV_default bc-player-BJAZNkRV_default-index-0 vjs-mouse vjs-dock vjs-plugins-ready vjs-contextmenu vjs-contextmenu-ui vjs-player-info vjs-errors vjs-has-started vjs-paused vjs-user-inactive not-hover"
+       controls
+       preload="auto"
+       width="640"
+       height="264"
+       poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUsAAACYCAMAAABatDuZAAAAdVBMVEVPT0/g4ODl5eXj4+NMTExJSUlBQUHo6OhHR0c/Pz9ERET////Z2dmMjIxaWlrc3Nytra2UlJTOzs52dnZdXV1tbW2hoaFVVVXR0dGDg4OXl5eKiop4eHi1tbXDw8M6OjqgoKBlZWW/v7/19fUsLCwlJSUxMTGB24YfAAAE/0lEQVR4nO3d2XKjOBQGYBA6EggwmwFjs3jJ5P0fccCAbTAmsi8mlZr/u+mupC+ov4R0tNGGAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/Cm/99jP8fZyUEEa+2eRcCEVI9FPcFlu/igOLScmsoA79jbAR5wdInDKvzdAyBxZjcnfcCKT5Ju6UtWTmXNtEz6mDNN8hklhaT0n2ccr6pH77+f4O4tWrJPvGGSo0TT0qMZ/f7gnmnezffso/QezltIdkgeeZ7R/W408L8dvP+Qc44T1KS3rh4cRtpWwj9avg4c2Xe4T5E1HdomSsSu8Felu2q+R8TxNh/oSO8tYmw3w+xHCxPd+ilj6G81XkD1mx3WmpKuci8caBSSb03z/gX6KKa1QyfDW/IfveNHOURqvs1LRMGTmv/4WTDWFa9cq/ghZtPHnoxxVSi2+xM3aq0sdbvo7zoRK3Ta9YnHw74dhn4iX/yVgGsW7yvVT6OHFfG7EMY7kezq6lkfE8X+T5UGdaaJh6+PVNZtZePHWLdtS/5WyPHlMLZ+NSRvnUbQqv/52HoVwLvy0XPa9Z0qH/pUzxluu4Z9mtWfJptymGNpth9U0Hf1zGZGY06TZVXxdZMZY4dPDpkjDblQ8TS570BTvD4KNjlmW31bO9d5u2hQ5T3zzLa7dJY/8o+nqdYR6p4znLvtvsG6KqLAw+2paybF/qXXJN0z72pXyIaaSG5SzbbvPcLVxSP/WxKmSp4UWW3UqxjSzf87JdVrmBLN/zor+M02t5jv7yHYvjeHCYjeNHjOMalurLzB7LSdSX73ie95xzzHs+M8uy6ygX5uN4xXXM1on8yZY51oneMlm/zGjaL6ohYkwhtdyybDvKzXxd3ce6+jvGLMcZ+KNhv8faYb9Hy7APOVtQv1J77EO+Zdgfp4X98Q0Obmgaz23I6Ur6nbid28DIs4rTcJ5IeV65eHTQqcZmiTd8FeU76a+fcxsPDcoDslxjnwLLlPu185chzl9qUeX17omsXl2HIqpvJbyBkWcFFbfz6unyefUywHl1PbS/36Oo8nmaJE4P9ygOWAReJ+5Xpdo0k9v9Ht7d7ykf7/dEWNT4yfTeWVD5aU7KpjyNKvPx3hmi1CCi+X1IMwjm9yGtAi+4DpUGrzZzzXFg2mK+o4foh/vjGT4UoU+kK981OC9O0eGVto6sJz3k2CTZebHuhDVcbLOdZGzyHZh4/1Rzgg5ui80hrD2TtUyvDotc4HNPH+NkC0FGnrdTHmVjyggAAAAAHxmOYRHRuEiJj+F9iPZRF6Z9LDLZh6niEmF+hCdut1mr3E16pG7yQw4rqGunw34FYQakrek+lmNnnpOfuOGkx+LbLIirwzHtMnaSY4EVDl0UycZwLqWKTCHiS+0xq7C3rldfYsdwvEvNLvhkli7HTdXh0pDvNaH1rZrCLdu2+tX8E2RN5X2r71DiyIYmFcZfbE9tll+X7uBvI4utW53P51h+uV2TbNwtGqYebripK4wuy2t0jlekl0MURX7RuI3RhYuz1bpE7Yaqy/LbyxxOjlsqVym7KfyGRYLbGxd7Prp46raNk/zA2bpZXjK3ENklyY9uSqm73xZuhE1dbaoLi5ehTdtYBkmYchGZcncig047aeLTy++4luPdN4m4cAR1/w8FtX/pOsnrD3756QAAAAAAAAAAAAAAAAAAAP7P/gWIXzg5SgLEHwAAAABJRU5ErkJggg=="
+       data-setup="{}">
+    <source id="source" src="" type="application/x-mpegURL" />
+</video>
+<form method="GET" action="">
+    <input type="text" name="id">
+    <button type="submit">View Asset</button>
+</form>
+<script>
+    let id = location.search.replace('?id=', '');
+    document.getElementById('source').setAttribute('src', `https://nepms-multiaudio-origin.vpc3.mnw.no/hls/${id}/master.m3u8`);
+    //document.getElementById('source').setAttribute('src', `https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/manifest0/index.m3u8`);
+    setTimeout(() => {
+        let videoJs = document.createElement('script');
+        videoJs.src = 'https://vjs.zencdn.net/7.6.6/video.js';
+        document.body.appendChild(videoJs);
+    });
+</script>
+</body>
+</html>
