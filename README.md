@@ -35,7 +35,7 @@ For local testing, cd to docs and use http-server.
 
 To make it available for others, set up your repository to use GitHub pages with docs as directory.
 
-When editing, every save will create a new commit. To build a new version of the epub you have to fetch the last data from GitHub and then use ``` yarn build ``` to start the process.
+When editing, every save will create a new commit. To build a new version of the epub you have to fetch the last data from GitHub and then use ``` yarn build ``` to start the process. This can be automated, and I have tested this using Now (https://zeit.co/). But epubcheck wasn't that easy to deploy.
 
 You can use Export to look at the structure while editing.
 
